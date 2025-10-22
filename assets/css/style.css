@@ -953,10 +953,328 @@ body {
 .login__register a {
     color: #4f46e5;
     text-decoration: none;
+    font-weight: 600;
+    transition: 0.3s ease;
 }
 
 .login__register a:hover {
+    color: #4338ca;
     text-decoration: underline;
+}
+
+/*====================== Responsive Styles ======================*/
+
+/* --- Tablets --- */
+@media (max-width: 992px) {
+
+    /* NavBar */
+    .nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .nav__actions {
+        order: 2;
+        margin-top: 10px;
+    }
+
+    .nav__search,
+    .nav__menu,
+    .search-bar {
+        width: 100%;
+        justify-content: center;
+        margin-top: 10px;
+    }
+
+    .nav__menu {
+        order: 3;
+    }
+
+    .nav__list {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+    }
+
+    /* Home */
+    .home__container,
+    .about__container {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .home__title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        margin-bottom: 1rem;
+    }
+
+    .home__description {
+        font-size: 1rem;
+        margin-bottom: 2rem;
+        padding: 0 10px;
+    }
+
+    .home__cta {
+        padding: 0.8rem 1.8rem;
+        font-size: 1rem;
+    }
+
+    .home__image img,
+    .about__image img {
+        width: 80%;
+        margin: auto;
+        display: block;
+    }
+
+    /* Courses */
+    .courses__container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+
+    /* Instructors */
+    .instructors__container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+    }
+
+    /* About */
+    .about__description {
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+        padding: 0 10px;
+    }
+
+    .about__image {
+        margin-bottom: 2rem;
+    }
+
+    /* Footer */
+    .footer-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+    }
+
+    .social-icons {
+        justify-content: flex-start;
+    }
+
+    .footer-feedback {
+        margin-top: 1rem;
+    }
+
+    .footer-feedback input,
+    .footer-feedback textarea {
+        font-size: 0.9rem;
+        padding: 0.5rem 1rem;
+        border: 1px solid #475569;
+        border-radius: 10px;
+        background: transparent;
+        outline: none;
+        width: 100%;
+    }
+
+    .footer-feedback button {
+        margin-top: 10px;
+        padding: 0.5rem 1rem;
+        border: none;
+        background: linear-gradient(135deg, #4f46e5, #6366f1);
+        color: #fff;
+        border-radius: 25px;
+        cursor: pointer;
+        font-size: 1rem;
+        transition: 0.3s;
+        box-shadow: 0 2px 6px rgba(99, 102, 241, 0.5);
+    }
+
+    .footer-feedback button:hover {
+        box-shadow: 0 3px 10px rgba(99, 102, 241, 0.7);
+        transform: translateY(-2px);
+    }
+
+    .footer-bottom p {
+        font-size: 0.9rem;
+        color: #cbd5e1;
+    }
+}
+
+/* --- Mobile --- */
+@media (max-width: 768px) {
+
+    /* Header */
+    .nav {
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+    }
+
+    .nav__actions,
+    .nav__menu,
+    .nav__search,
+    .search-bar {
+        width: 100%;
+        justify-content: center;
+        margin-top: 10px;
+    }
+
+    .nav__actions {
+        order: 1;
+    }
+
+    .nav__menu {
+        order: 2;
+    }
+
+    .nav__search {
+        order: 3;
+    }
+
+    /* Home, About, Instructors */
+    .home__container,
+    .about__container,
+    .instructors__container {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 2rem;
+        margin-top: 4rem;
+        padding: 0 10px;
+    }
+
+    .home__image,
+    .about__image {
+        margin-top: 2rem;
+        text-align: center;
+    }
+
+    .home__image img,
+    .about__image img {
+        width: 90%;
+        margin: auto;
+        display: block;
+    }
+
+    .home__title {
+        font-size: 1.8rem;
+    }
+
+    .home__cta {
+        padding: 0.8rem 1.5rem;
+        font-size: 1rem;
+    }
+
+    /* Courses */
+    .courses__container {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    /* Footer */
+    .footer-container {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 2rem;
+    }
+
+    .social-icons {
+        justify-content: center;
+    }
+
+    .footer-feedback input,
+    .footer-feedback textarea,
+    .footer-feedback button {
+        width: 100%;
+    }
+
+    .footer-feedback {
+        margin-top: 1rem;
+        padding: 1rem;
+        border-radius: 8px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .footer-bottom p {
+        font-size: 0.9rem;
+    }
+}
+
+/* --- Small Phones --- */
+@media (max-width: 480px) {
+
+    /* Header */
+    .nav__actions {
+        order: 1;
+        justify-content: center;
+        margin-top: 8px;
+        gap: 15px;
+    }
+
+    .nav__menu {
+        order: 2;
+    }
+
+    .nav__search {
+        order: 3;
+    }
+
+    .nav__actions i {
+        font-size: 1.3rem;
+    }
+
+    /* Home */
+    .home__container {
+        margin-top: 4rem;
+        padding: 0 10px;
+    }
+
+    .logo {
+        font-size: 1.3rem;
+        text-align: center;
+    }
+
+    .home__title {
+        font-size: 1.5rem;
+    }
+
+    .home__description {
+        font-size: 0.9rem;
+    }
+
+    .home__cta {
+        padding: 0.7rem 1.2rem;
+        font-size: 0.9rem;
+    }
+
+    .home__image img {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    /* Buttons */
+    .button,
+    .about__button {
+        width: 100%;
+        padding: 12px;
+        font-size: 1rem;
+        font-weight: 700;
+        letter-spacing: 1px;
+    }
+
+    /* Footer */
+    .footer-container {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .footer-bottom p,
+    .footer-col p {
+        font-size: 0.85rem;
+        line-height: 1.6;
+    }
 }
 
 /* ================= DARK THEME ====================================================================== */
@@ -965,7 +1283,7 @@ body.dark-theme {
     color: #f8fafc;
 }
 
-/* ====================================================Navbar====== */
+/* ==================================================== Navbar====== */
 body.dark-theme .nav__menu {
     background-color: #1e293b;
 }
