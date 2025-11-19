@@ -1340,6 +1340,63 @@ body {
     box-shadow: 0 3px 8px rgba(108, 99, 255, 0.4);
 }
 
+/*====================== Pagination Styles ======================*/
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.8rem;
+    margin-top: 2rem;
+    z-index: 1;
+}
+
+.pagination .box,
+.pagination button {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    border: 1px solid #e3e3e3;
+    background: #fff;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+    color: #333;
+    transition: .3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pagination .box:hover,
+.pagination button:hover {
+    background: #4f46e5;
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+    border-color: transparent;
+}
+
+.pagination .active,
+.pagination button.active {
+    background: #4f46e5;
+    color: #fff;
+    font-weight: 600;
+    border-color: transparent;
+    box-shadow: 0 4px 12px rgba(79, 70, 229, 0.4);
+}
+
+.pagination .btn {
+    font-size: 18px;
+    color: #777;
+}
+
+.dots {
+    margin: 0 4px;
+    color: #888;
+    font-size: 18px;
+    pointer-events: none;
+}
 
 /*====================== Responsive Styles ======================*/
 
@@ -2310,6 +2367,31 @@ body.dark-theme .profile__btn:hover {
     box-shadow: 0 3px 8px rgba(99, 102, 241, 0.5);
 }
 
+/*========================pagination=========================*/
 
+body.dark-theme .pagination .box,
+body.dark-theme .pagination button {
+    background: #334155;
+    color: #cbd5e1;
+    border: 1px solid #475569;
+}
 
+body.dark-theme .pagination .box:hover,
+body.dark-theme .pagination button:hover { 
+    background: #6366f1;
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
+    border-color: transparent;
+}
 
+body.dark-theme .pagination .active,
+body.dark-theme .pagination button.active {
+    background: #6366f1;
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.5);
+    border-color: transparent;
+}
+
+body.dark-theme .pagination .btn {
+    color: #94a3b8;
+}
