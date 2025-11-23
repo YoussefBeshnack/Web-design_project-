@@ -1,0 +1,180 @@
+/* ====== Page background with purple ====== */
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(180deg, #f9fafb 0%, #f7f3ff 100%);
+  background-image:
+    radial-gradient(circle at 10% 18%, rgba(79,70,229,0.15) 0 120px, transparent 121px),
+    radial-gradient(circle at 82% 12%, rgba(99,102,241,0.12) 0 150px, transparent 151px),
+    radial-gradient(circle at 28% 78%, rgba(79,70,229,0.10) 0 180px, transparent 181px);
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.login__container {
+  background: transparent; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.login__box {
+  background: #fff;
+  padding: 2.5rem 2rem;
+  border-radius: 20px;
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+  position: relative;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Close Icon */
+.login__close {
+  position: absolute;
+  top: 15px;
+  right: 22px;
+  font-size: 1.4rem;
+  color: #4b5563;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  text-decoration: none;
+}
+
+.login__close:hover { color: #1e1b4b; }
+
+/* Titles */
+.login__title-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.3rem;
+}
+
+.login__title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #1e1b4b;
+  text-align: center;
+  flex: 1;
+}
+
+.login__subtitle {
+  color: #6b7280;
+  font-size: 0.9rem;
+  margin-top: 0.3rem;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+/* Jelly styling */
+.jelly-character {
+  position: absolute;
+  right: -7px;
+  top: 35px;
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, #4f46e5, #6366f1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 18px rgba(168, 85, 247, 0.4);
+  transition: transform 0.3s ease;
+}
+
+.jelly-character:hover { transform: translate(3px, 3px); }
+
+.jelly-face { position: relative; width: 70%; height: 70%; }
+.eye { position: absolute; width: 14px; height: 14px; background: #fff; border-radius: 50%; top: 25%; }
+.left-eye { left: 7px; }
+.right-eye { right: 7px; }
+.pupil { position: absolute; width: 6px; height: 6px; background: #4b0082; border-radius: 50%; top: 4px; left: 4px; }
+.smile { position: absolute; bottom: 8px; left: 50%; transform: translateX(-50%); width: 26px; height: 9px; border-bottom: 3px solid #4b0082; border-radius: 0 0 30px 30px; }
+
+/* Input Fields */
+.login__input-box { position: relative; margin: 1.5rem 0; }
+
+.login__input-box input {
+  width: 100%;
+  padding: 0.8rem 0.5rem;
+  border: none;
+  border-bottom: 2px solid #ccc;
+  outline: none;
+  font-size: 1rem;
+  background: transparent;
+  transition: 0.3s;
+}
+
+.login__input-box label {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: #888;
+  transition: 0.3s;
+}
+
+.login__input-box input:focus ~ label,
+.login__input-box input:valid ~ label {
+  top: -10px;
+  font-size: 0.85rem;
+  color: #4f46e5;
+}
+
+.login__input-box input:focus { border-bottom-color: #4f46e5; }
+
+/* Password eye icon */
+.password-box { display: flex; align-items: center; position: relative; }
+
+.toggle-password {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.2rem;
+  color: #888;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.toggle-password:hover { color: #4f46e5; }
+
+/* Button */
+.login__btn {
+  width: 100%;
+  padding: 0.9rem;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #4f46e5, #6366f1);
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.3s;
+  margin-top: 0.5rem;
+}
+
+.login__btn:hover {
+  background: linear-gradient(135deg, #4338ca, #4f46e5);
+  transform: translateY(-2px);
+  box-shadow: 0 3px 8px rgba(108, 99, 255, 0.4);
+}
+
+/* Return Link */
+.login__return { margin-top: 1.2rem; font-size: 0.9rem; }
+.login__return a { color: #4f46e5; text-decoration: none; font-weight: 600; transition: 0.3s ease; }
+.login__return a:hover { color: #4338ca; text-decoration: underline; }
+
+/* ======= Responsive Hide Jelly on Mobile ======= */
+@media (max-width: 600px) {
+  .login__title-box { flex-direction: column; gap: 5px; }
+  .jelly-character { display: none; }
+  .login__box { width: 95%; padding: 2rem 1.5rem; }
+}

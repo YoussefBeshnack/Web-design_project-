@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Peer Mentors</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.css">
+    <link rel="icon" href="assets/icons/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="assets/icons/favicon-96x96.png">
+    <link rel="manifest" href="assets/icons/site.webmanifest">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.css"/>
+    <link rel="stylesheet" href="css/swiper-bundle.min.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav container">
+            <!-- Logo -->
+            <div class="nav__logo">
+                <img src="assets/images/logo.png" alt="Logo" class="nav__logo-img" />
+            </div>
+
+            <!-- Navigation Menu -->
+            <div class="nav__menu" id="nav-menu">
+                <ul class="nav__list">
+                    <li class="nav__item">
+                        <a href="#home" class="nav__link">
+                            <i class="ri-home-2-line"></i>
+                            <span>Home</span>
+                        </a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#courses" class="nav__link">
+                            <i class="ri-book-open-line"></i>
+                            <span>Courses</span>
+                        </a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#instructors" class="nav__link">
+                            <i class="ri-presentation-line"></i>
+                            <span>Instructors</span>
+                        </a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#about" class="nav__link">
+                            <i class="ri-information-line"></i>
+                            <span>About Us</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="search-bar">
+                <input type="text" placeholder="Search for a course" />
+                <button id="searchIcon"><i class="ri-search-line"></i></button>
+            </div>
+            <div class="nav__actions">
+                <i class="ri-user-line login-button" id="login-button" title="Profile"></i>
+                <i class="ri-notification-line" id="notification-button" title="Notifications"></i>
+                <i class="ri-moon-line theme-button" id="theme-button" title="Toggle Theme"></i>
+                <i class="ri-global-line" id="language-button" title="Change Language"></i>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main">
+        <!-- Home -->
+        <section class="home section" id="home">
+            <div class="home__container container grid">
+                <div class="home__data">
+                    <h1 class="home__title">
+                        Learn from the <span class="highlight">Best</span><br> Online Courses
+                    </h1>
+                    <p class="home__description">
+                        Join thousands of learners worldwide and gain new skills with our expert-led interactive courses.
+                    </p>
+                    <a href="#courses" class="button">Explore Courses</a>
+                </div>
+        
+                <div class="home__image">
+                    <img src="assets/images/aaa.png" alt="Learning Illustration" />
+                </div>
+            </div>
+        </section>
+
+        <!--------------- COURSES SECTION ----->
+        <section class="courses section" id="courses">
+            <h2 class="section__title">Featured Courses</h2>
+
+            <div class="courses__container container">
+                <div class="courses__swiper swiper">
+                    <div class="swiper-wrapper">
+                        <!-- Courses -->
+                    </div>
+                </div>
+                <!-- Swiper Navigation -->
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </section>
+
+        <!----------------------------------Filter & Courses Section--------------------------->
+        <section class="courses-filter-section" id="filter">
+            <div class="filter">
+                <h3 class="filter-title">Filter Courses</h3>
+                <div class="filter-controls">
+                    <select id="categoryFilter">
+                        <option value="all">All Categories</option>
+                        <option value="Web Development">Web Development</option>
+                        <option value="Design">Design</option>
+                        <option value="AI">Artificial Intelligence</option>
+                        <option value="Cyber">CyberSecurity</option>
+                    </select>
+
+                    <select id="priceFilter">
+                        <option value="all">All Prices</option>
+                        <option value="u0">Free</option>
+                        <option value="u50">Under $50</option>
+                        <option value="u100">Under $100</option>
+                        <option value="g100">Greater than $100</option>
+                    </select>
+
+                    <select id="durationFilter">
+                        <option value="all">All Durations</option>
+                        <option value="short">Under 2 weeks</option>
+                        <option value="medium">Under 2 months</option>
+                        <option value="long">More than 2 months</option>
+                    </select>
+
+                    <select id="enrollFilter">
+                        <option value="all">Enrollments</option>
+                        <option value="owned">Owned Courses</option>
+                        <option value="unowned">Unowned Courses</option>
+                    </select>
+
+                    <button id="applyFilter">Apply</button>
+                </div>
+            </div>
+
+            <div class="courses-container-filter" id="coursesContainerFilter">
+
+            </div>
+            <div id="pagination"></div>
+        </section>
+
+            <!-- Instructors -->
+                <section class="instructors section" id="instructors">
+                    <h2 class="section__title">Meet Our Instructors</h2>
+                
+                    <div class="instructors__container">
+                        <div class="instructor-item">
+                            <div class="instructor-image-wrapper">
+                                <img src="assets/images/aaa.png" alt="Instructor 1" class="instructor-image" />
+                            </div>
+                            <h3 class="instructor-name">Mahmoud Makky</h3> <!-- sorry Beshnack :) -->
+                            <p class="instructor-bio">
+                                Expert in Web Development with 1 century of experience.
+                            </p>
+                        </div>
+                        <div class="instructor-item">
+                            <div class="instructor-image-wrapper">
+                                <img src="assets/images/aaa.png" alt="Instructor 1" class="instructor-image" />
+                            </div>
+                            <h3 class="instructor-name">Youssef Beshnack</h3>
+                            <p class="instructor-bio">
+                                Professional Game Dev. 3 decades of experience.
+                            </p>
+                        </div>
+                        <div class="instructor-item">
+                            <div class="instructor-image-wrapper">
+                                <img src="assets/images/aaa.png" alt="Instructor 1" class="instructor-image" />
+                            </div>
+                            <h3 class="instructor-name">Jana Sherif</h3>
+                            <p class="instructor-bio">
+                                Expert in Web Development with 10 years of experience.
+                            </p>
+                        </div>
+                
+                        <div class="instructor-item">
+                            <div class="instructor-image-wrapper">
+                                <img src="assets/images/aaa.png" alt="Instructor 2" class="instructor-image" />
+                            </div>
+                            <h3 class="instructor-name">Mazen Hany</h3>
+                            <p class="instructor-bio">
+                                Data Scientist specializing in Machine Learning and AI.
+                            </p>
+                        </div>
+                
+                        <div class="instructor-item">
+                            <div class="instructor-image-wrapper">
+                                <img src="assets/images/aaa.png" alt="Instructor 3" class="instructor-image" />
+                            </div>
+                            <h3 class="instructor-name">Youssef Eltony</h3>
+                            <p class="instructor-bio">
+                                Graphic Designer with a passion for creative design solutions.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+    <!-- About Us -->
+    <section class="about section" id="about">
+        <div class="about__container container grid">
+            <div class="about__image">
+                <img src="assets/images/aaa.png" alt="About Peer Mentors" />
+            </div>
+
+            <div class="about__data">
+                <h2 class="section__title about__title">About Peer Mentors</h2>
+                <p class="about__description">
+                    At <strong>Peer Mentors</strong>, we're passionate about creating meaningful learning experiences.
+                    Our platform connects learners with experienced mentors to provide personalized guidance, practical
+                    skills,
+                    and real-world knowledge that help students achieve their goals with confidence.
+                </p>
+
+                <p class="about__description">
+                    We believe in community-driven education — where collaboration, curiosity, and creativity come together.
+                    With our expert instructors, flexible learning paths, and supportive environment,
+                    you can take your learning journey to the next level and unlock your full potential.
+                </p>
+
+                <a href="#courses" class="about__button">Start Learning</a>
+            </div>
+        </div>
+    </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <!-- Logo + Links -->
+            <div class="footer-col">
+                <h2 class="footer-logo">Peer Mentors</h2>
+                <p class="footer-desc">
+                    Empowering learners through mentorship and collaboration.
+                    Join us to explore courses, connect with instructors, and grow your skills.
+                </p>
+
+                <div class="social-icons">
+                    <a href="#"><i class="ri-facebook-fill"></i></a>
+                    <a href="#"><i class="ri-twitter-fill"></i></a>
+                    <a href="#"><i class="ri-instagram-fill"></i></a>
+                    <a href="#"><i class="ri-linkedin-fill"></i></a>
+                </div>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#courses">Courses</a></li>
+                    <li><a href="#instructors">Instructors</a></li>
+                    <li><a href="#about">About Us</a></li>
+                </ul>
+            </div>
+
+            <!-- Feedback Form -->
+            <div class="footer-col">
+                <h3>Send Us Your Feedback</h3>
+                <p>We'd love to hear from you! Please send us your queries or feedback.</p>
+
+                <form class="footer-feedback">
+                    <input type="text" placeholder="Your Name" required />
+                    <input type="email" placeholder="Your Email" required />
+                    <textarea placeholder="Your Message" rows="3" required></textarea>
+                    <button type="submit"><i class="ri-send-plane-line"></i> Send</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 Peer Mentors & All Rights Reserved</p>
+        </div>
+    </footer>
+
+    <!-- ========== Script ========== -->
+    <script src="js/main.js" type="module"></script>
+    <script src="js/indexPopup.js" type="module"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/search.js" type="module"></script>
+    <script src="js/swiper-bundle.min.js"></script>
+    <script src="js/courses.js" type="module"></script>
+    <script src="js/filter.js" type="module"></script>
+    <script src="js/language.js"></script>
+</body>
+
+</html>
