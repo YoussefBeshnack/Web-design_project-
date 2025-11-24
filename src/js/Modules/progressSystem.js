@@ -128,8 +128,8 @@ export function getUserXP(userId) {
 
 //  Track Progress
 export function trackProgress(userId, courseId, progress) {
-  if (userId == null || courseId == null) { console.log("userId and courseId required"); return null; }
-  if (progress < 0 || progress > 100) { console.log("progress must be 0-100"); return null; }
+  if (userId == null || courseId == null) { return null; }
+  if (progress < 0 || progress > 100) { return null; }
 
   const now = new Date().toISOString();
   let rec = progressList.find(p => p.userId === userId && p.courseId === courseId);

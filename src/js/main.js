@@ -18,18 +18,14 @@ formy.addEventListener("submit", function(e){
 
 
 // Shortcut (For Admins!)
-const keys = {};
-
-if(getCurrentUser() != null){
-  if(getCurrentUser().role == `admin`){
-    document.addEventListener("keydown",(e) =>{
-        keys[e.key.toLowerCase()] = true;
-        if (keys["control"] && keys["alt"] && keys["a"]) {
-            window.location.href=`/pages/admin.html`;
-        }
-    });
-  }
+if (getCurrentUser()?.role === "admin") {
+document.addEventListener("keydown", (e) => {
+    if (e.ctrlKey && e.altKey && e.key.toLowerCase() === "a") {
+      window.location.href = "/pages/admin.html";
+    }
+});
 }
+
 
 if (getCurrentUser().role === "student"){
   document.addEventListener("visibilitychange", () => {

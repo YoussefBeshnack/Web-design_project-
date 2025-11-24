@@ -33,8 +33,6 @@ const comments = document.querySelector("#comment-list"); // Message to Tony -- 
 const submit = document.querySelector("#postComment");
 const enroll = document.querySelector(`.btn-enroll`)
 
-console.log(CourseInformation.courseInfo());
-
 
 
 // Functions
@@ -111,10 +109,10 @@ function loadInformationPage(){
   title.innerHTML=`${information.title}`
   description.innerHTML=`${information.description}`
   details.instructor.innerHTML=`${information.instructor}`
-  details.duration.innerHTML=`${information.duration} Weeks`
+  details.duration.innerHTML=`${+information.duration} Weeks`
   details.videos.innerHTML=`5` // Temp for now.
   details.language.innerHTML=`English` // Temp for now.
-  details.price.innerHTML=`$ ${information.price}`
+  details.price.innerHTML=`$ ${+information.price}`
   details.level.innerHTML=`${information.category}`
 }
 
@@ -151,9 +149,19 @@ function loadPage(){
   loadComments(getCourseData())
 }
 
+function buttonHandling(){
+  if(getRole() === `admin`){
+    enroll.textContent = "Visit";
+    return
+  }
+  if(getCurrentUser().enrolledCourses.includes(getCourseData().id)){
+    enroll.textContent = "Visit";
+    return
+  }
+}
 
-loadPage()
-
+loadPage();
+buttonHandling();
 
 
 // Events
@@ -165,7 +173,6 @@ ratingStars.forEach((star, i) => {
     ratingStars.forEach((s, index) => {
       s.classList.toggle("ri-star-fill", index <= i);
       s.classList.toggle("ri-star-line", index > i);
-      console.log("amin", index)
     });
   });
 
@@ -208,7 +215,6 @@ submit.addEventListener("click" ,(e) => {
 
 enroll.addEventListener("click",() =>{
   if(getRole() === `admin`){
-    window.location.href=`coursepage.html?id=${getCourseData().id}`;
     window.location.href=`coursepage.html?id=${getCourseData().id}`;
     return
   }

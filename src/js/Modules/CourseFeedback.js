@@ -56,7 +56,6 @@ export const CourseFeedback = {
     let feedbackEntry = feedbackData.find(f => f.courseId === courseId);
 
     if (!feedbackEntry) {
-      console.log("test1.5")
       // If course doesn't exist in feedback data, create it with your structure
       feedbackEntry = { 
         courseId: courseId,
@@ -68,13 +67,11 @@ export const CourseFeedback = {
     // Check if user already submitted feedback so no duplicates
     const existingFeedback = feedbackEntry.feedbacks.find(f => f.userId === userId);
     if (existingFeedback) {
-      console.log("test2")
       return false;
     }
 
     // Validate stars rating
     if (stars < 0 || stars > 5) {
-      console.log("test3")
       return false;
     }
 

@@ -19,10 +19,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   emailInput.addEventListener("input", () => {
       if (emailRegex.test(emailInput.value)) {
-          console.log("Valid email ✔️");
           emailInput.style.borderColor = "green";
       } else {
-          console.log("Invalid email ❌");
           emailInput.style.borderColor = "red";
       }
   });

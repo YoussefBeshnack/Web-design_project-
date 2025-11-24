@@ -2,13 +2,14 @@ import { courseList, createCourse } from "./Modules/courseSystem.js"
 import { deleteCourse } from "./Modules/courseSystem.js"
 import { courseList as Courses } from "./Modules/courseSystem.js"
 import { editCourse } from "./Modules/courseSystem.js"
-import { getUser, listUsers } from "./Modules/userSystem.js"
+import { getUser, listUsers, updateUser } from "./Modules/userSystem.js"
 import { CourseFeedback } from "./Modules/CourseFeedback.js"
 import { register } from "./Modules/userSystem.js"
 import { getCurrentUser } from "./Modules/userSystem.js"
 import { logout } from "./Modules/userSystem.js"
 import { ExploreSystem } from"./Modules/ExploreSystem.js"
-import { getCourse } from "./Modules/courseSystem.js"
+import { getCourse, courseDeletion } from "./Modules/courseSystem.js"
+
 
 if(getCurrentUser() != null){
   if(getCurrentUser().role != `admin`){
@@ -19,21 +20,20 @@ if(getCurrentUser() != null){
 }
 
 // Shortcut to homepage. 
-const keys = {};
-
-document.addEventListener("keydown",(e) =>{
-    keys[e.key.toLowerCase()] = true;
-    if (keys["control"] && keys["alt"] && keys["a"]) {
-        window.location.href=`../index.html`;
+if (getCurrentUser()?.role === "admin") {
+document.addEventListener("keydown", (e) => {
+    if (e.ctrlKey && e.altKey && e.key.toLowerCase() === "a") {
+      window.location.href = "../index.html";
     }
 });
+}
+
 
 // Debouncer
 
 function debounce(fn, delay) {
   let timer;
   return function (...args) {
-    console.log("Debounce triggered, resetting timer");
     clearTimeout(timer);
     timer = setTimeout(() => {
       fn.apply(this, args);
@@ -58,6 +58,9 @@ const CommissionStorage = {
   save(amount) {
     if (typeof amount !== "number") {
       throw new Error("Commission must be a number");
+    }
+    if (amount < 0){
+      throw new Error("Commission can't be in negative");
     }
     localStorage.setItem(this.key, amount.toString());
   },
@@ -169,7 +172,7 @@ function renderAdminPage(){
       <td>${c.id}</td>
       <td>${c.title}</td>
       <td>${c.category}</td>
-      <td>${c.price}$</td>
+      <td>${Number(c.price)}$</td>
       <td>${c.students.length}</td>
       <td class="ri-star-fill" style="color:gold"> ${CourseFeedback.getAverageRating(c.id)}</td>
       <td class="status status-${c.status.toLowerCase()}">${c.status}</td>
@@ -214,7 +217,7 @@ function renderAdminPage(){
     instructorsbody.appendChild(tr);
   })
   const rev = $(`#revenue`);
-  rev.textContent=`${total.toFixed(2)*(comm/100)} $`
+  rev.textContent=`${parseFloat(total.toFixed(2)*(comm/100))} $`
 
   // render students in students tab
   const studentsBody = $('#studentsTable tbody')
@@ -258,7 +261,7 @@ function renderAdminPage(){
           })()
         }
         </td>
-        <td>Done</td> 
+        <td style="color: lightgreen">Done</td> 
         <td>${makeDateLookGood(getCourse(index).students.filter((d) => d[0] === user.id)[0][1])}</td>
         `
         paymentsList.appendChild(tr);
@@ -408,10 +411,11 @@ function AddCourseModal() {
           <label for="courseCategory">Category:</label>
           <select id="courseCategory" required>
               <option value="">Select a category</option>
-              <option value="Web Development">Web Development</option>
+              <option value="Business">Business</option>
+              <option value="Computer Science">Computer Science</option>
               <option value="Design">Design</option>
-              <option value="AI">Artificial Intelligence</option>
-              <option value="Cyber">CyberSecurity</option>
+              <option value="Cyber">Engineering</option>
+              <option value="Medicine">Medicine</option>
           </select>
         </div>
 
@@ -485,8 +489,8 @@ function removeSpecificCourse(courseId) {
   
   if (confirm('Are you sure you want to remove this course?')) {
    
-    deleteCourse(courseId);
-    
+    // deleteCourse(courseId);
+    courseDeletion(courseId);
     debouncedRender()
   }
 }
@@ -736,8 +740,16 @@ const btn = $(`#saveSettings`);
 commission.setAttribute("value", CommissionStorage.load())
 
 btn.addEventListener("click", () => {
+  if (+commission.value.trim() === NaN || commission.value.trim().length === 0){
+    return;
+  }
+  if (+commission.value < 0){
+    commission.value = 0;
+  }else if(+commission.value > 99){
+    commission.value = 99;
+  }
   RecentActivities.push(`Updated commission: ${commission.value}`)
-  CommissionStorage.save(Number(commission.value))
+  try{CommissionStorage.save(parseInt(commission.value));}catch(e){console.log(e)};
   debouncedRender()
 });
 

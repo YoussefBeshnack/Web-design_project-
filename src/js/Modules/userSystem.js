@@ -41,11 +41,9 @@ function _validateUserData(userData) {
 export function register(userData) {
   const v = _validateUserData(userData);
   if (v) {
-    console.log("%c❌ Register error: " + v, "color:red; font-weight:bold;");
     return { ok: false, error: v };
   }
   if (users.find(u => u.email === userData.email)) {
-    console.log("%c❌ Register error: Email already exists", "color:red; font-weight:bold;");
     return { ok: false, error: "Email already exists" };
   }
   const id = users.length ? Math.max(...users.map(u => u.id)) + 1 : 1;
@@ -58,25 +56,22 @@ export function register(userData) {
  };
   users.push(newUser);
   saveUsers();
-  console.log(`%c User registered: ${newUser.name} (${newUser.email})`, "color:green; font-weight:bold;");
   return { ok: true, user: newUser };
 }
 
 // Login
 export function login(email, password) {
-  if (!email || !password) { console.log("%c❌ Login error: Missing credentials", "color:red;"); return false; }
+  if (!email || !password) { return false; }
   const user = users.find(u => u.email === email && u.password === password);
-  if (!user) { console.log("%c❌ Invalid credentials", "color:red;"); return false; }
+  if (!user) { return false; }
   currentUser = { ...user };
   saveCurrent();
-  console.log(`%c Logged in: ${user.name}`, "color:blue; font-weight:bold;");
   return true;
 }
 
 // Logout
 export function logout() {
-  if (!currentUser) { console.log("%c No user logged in", "color:gray;"); return; }
-  console.log(`%c Logged out: ${currentUser.name}`, "color:orange;");
+  if (!currentUser) { return; }
   currentUser = null;
   saveCurrent();
 }
@@ -98,7 +93,6 @@ export function getUser(userID){
 
 // Admin helper: list users (no auth in demo)
 export function listUsers() {
-  console.log("%c Users:", "color:blue; font-weight:bold;", users);
   return users;
 }
 
@@ -113,7 +107,6 @@ export function updateUser(userToUpdate, newData) {
   }
   
   if (Object.keys(newData).length === 0) {
-      console.log("%c Update error: New data object is empty", "color:red; font-weight:bold;");
       return { ok: false, error: "New data object is empty" };
 }
   
@@ -121,7 +114,6 @@ export function updateUser(userToUpdate, newData) {
   const userIndex = users.findIndex(u => u.id === userToUpdate.id);
 
   if (userIndex === -1) {
-    console.log("%c Update error: User not found in array", "color:red; font-weight:bold;");
     return { ok: false, error: "User not found." };
   }
 
@@ -135,10 +127,10 @@ export function updateUser(userToUpdate, newData) {
   saveUsers();
 
   // (currentUser)
-  currentUser = { ...updatedUser }; 
-  saveCurrent();
-
-  console.log(`%c User updated: ${updatedUser.name} (${updatedUser.email})`, "color:green; font-weight:bold;");
+  if (currentUser?.role === "student"){
+    currentUser = { ...updatedUser }; 
+    saveCurrent();
+  }
 
   return { ok: true, user: currentUser } };
 
@@ -167,6 +159,5 @@ export function cleanupUserEnrollments(courseId) {
     // If at least one ID was removed from any user, save the updated user list to storage
     if (updated) {
         saveUsers(); 
-        console.log(`%c Cleaned up enrollment records for course ID: ${courseId}`, "color:purple;");
     }
 }

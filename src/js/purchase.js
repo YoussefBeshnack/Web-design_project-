@@ -32,7 +32,7 @@ function loadInfo() {
     const info = getCourseData();
     courseDetails.title.innerHTML = info.title;
     courseDetails.description.innerHTML = info.description;
-    courseDetails.price.innerHTML = ` ${info.price} $`;
+    courseDetails.price.innerHTML = ` ${+info.price} $`;
 }
 
 function validateUser() {
@@ -52,14 +52,22 @@ const Validation = {
             { inputIdx: 0, validate: str => Validation.isNotEmpty(str) },
             { inputIdx: 1, validate: str => str.trim().length < 0 || Validation.isEmail(str) }
         ],
+
         visaDetails: [
-            { inputIdx: 0, validate: str => Validation.isDigitsLength(str, 12) },
-            { inputIdx: 1, validate: str => Validation.isExactLength(str, 5) },
+            { inputIdx: 0, validate: str => Validation.isDigitsLength(str, 16) },
+            { inputIdx: 1, validate: str => {
+                if (!Validation.isExactLength(str, 5)) return false;
+
+                const [month, year] = str.split("/");
+                return Number(year) >= 25;
+            }},
             { inputIdx: 2, validate: str => Validation.isNotEmpty(str) }
         ],
+
         vodafoneDetails: [
             { inputIdx: 0, validate: str => Validation.isDigitsLength(str, 11) }
         ],
+
         paypalDetails: [
             { inputIdx: 0, validate: str => str.trim().length < 0 || Validation.isEmail(str) }
         ]

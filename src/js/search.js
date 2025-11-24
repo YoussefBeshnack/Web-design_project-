@@ -28,8 +28,6 @@ searchBar.appendChild(suggestionBox);
 searchInput.addEventListener("input", () => {
     const query = searchInput.value;
     suggestionBox.innerHTML = "";
-    console.log(query);
-    console.log("Event Activated");
 
     if (!query) {
         suggestionBox.style.display = "none";
