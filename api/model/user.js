@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 
 const userSchema = new mongoose.Schema(
   {
-    _id: { type: String, required: true },
+    id: { type: String, required: true, unique: true },
     name: { type: String, required: true },
     email: { type: String, required: true, unique: true, lowercase: true },
     password: { type: String, required: true },
@@ -14,5 +14,20 @@ const userSchema = new mongoose.Schema(
     versionKey: false
   }
 );
+
+// Hide _id in API responses
+userSchema.set("toJSON", {
+  transform: (doc, ret) => {
+    delete ret._id;
+    return ret;
+  }
+});
+
+userSchema.set("toObject", {
+  transform: (doc, ret) => {
+    delete ret._id;
+    return ret;
+  }
+});
 
 export default mongoose.model('User', userSchema);

@@ -12,7 +12,7 @@ const getAllUsers = async (req, res) => {
 
 const addUser = async (req, res) => {
 	try {
-		const { _id, name, email, password, role, lastActive } = req.body;
+		const { id, name, email, password, role, lastActive } = req.body;
 
 		// Validate required fields
 		if (!name || !email || !password) {
@@ -21,7 +21,7 @@ const addUser = async (req, res) => {
 
 		// 3. Mongoose handles the connection in the background automatically
 		const newUser = new User({
-			_id,
+			id,
 			name,
 			email,
 			password,
@@ -70,7 +70,7 @@ const syncUsers = async (req, res) => {
 		// Build bulk ops
 		const ops = users.map(user => ({
 			updateOne: {
-				filter: { _id: user._id },
+				filter: { id: user.id },
 				update: { $set: user },
 				upsert: true
 			}
@@ -107,12 +107,12 @@ const deleteUser = async (req, res) => {
     if (!id && !email) {
       return res.status(400).json({
         success: false,
-        message: "Please provide _id or email to delete the user"
+        message: "Please provide id or email to delete the user"
       });
     }
 
     // Build query
-    const query = id ? { _id: id } : { email: email };
+    const query = id ? { id: id } : { email: email };
 
     // Delete user
     const result = await User.deleteOne(query);

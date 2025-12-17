@@ -10,7 +10,7 @@ import { fileURLToPath } from 'url';
 import connectDB from './config/config.js';
 import homePage from './router/homePage.js';
 import userRouter from './router/userRouter.js';
-// import courseRouter from './router/courseRouter.js';
+import courseRouter from './router/courseRouter.js'
 // import progressRouter from './router/progressRouter.js';
 
 // ESM dirname fix
@@ -28,7 +28,7 @@ app.use(express.static(path.join(__dirname, '../src')));
 // Routes (uncomment when ready)
 app.use('/', homePage);
 app.use('/api/users', userRouter);
-// app.use('/api/courses', courseRouter);
+app.use('/api/courses', courseRouter);
 // app.use('/api/progress', progressRouter);
 
 // Startup
