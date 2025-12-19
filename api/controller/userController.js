@@ -2,7 +2,6 @@ import User from '../model/user.js'
 
 const getAllUsers = async (req, res) => {
 	try {
-		// Just use the Model directly. Mongoose knows it's connected.
 		const users = await User.find({});
 		res.status(200).json(users);
 	} catch (err) {
@@ -14,12 +13,10 @@ const addUser = async (req, res) => {
 	try {
 		const { id, name, email, password, role, lastActive } = req.body;
 
-		// Validate required fields
 		if (!name || !email || !password) {
 			return res.status(400).json({ error: 'Name, email, and password are required' });
 		}
 
-		// 3. Mongoose handles the connection in the background automatically
 		const newUser = new User({
 			id,
 			name,
@@ -29,7 +26,6 @@ const addUser = async (req, res) => {
 			lastActive: lastActive || new Date().toISOString()
 		});
 
-		// 4. This sends the data to the 'users' collection defined in your Model
 		const savedUser = await newUser.save();
 
 		res.status(201).json({
@@ -51,7 +47,6 @@ const syncUsers = async (req, res) => {
 	try {
 		const users = req.body;
 
-		// Validate input
 		if (!Array.isArray(users)) {
 			return res.status(400).json({
 				success: false,
@@ -67,7 +62,6 @@ const syncUsers = async (req, res) => {
 			});
 		}
 
-		// Build bulk ops
 		const ops = users.map(user => ({
 			updateOne: {
 				filter: { id: user.id },
@@ -76,7 +70,6 @@ const syncUsers = async (req, res) => {
 			}
 		}));
 
-		// Execute
 		const result = await User.bulkWrite(ops);
 
 		return res.status(200).json({
@@ -103,7 +96,6 @@ const deleteUser = async (req, res) => {
   try {
     const { id, email } = req.body;
 
-    // Validate input
     if (!id && !email) {
       return res.status(400).json({
         success: false,
@@ -111,10 +103,8 @@ const deleteUser = async (req, res) => {
       });
     }
 
-    // Build query
     const query = id ? { id: id } : { email: email };
 
-    // Delete user
     const result = await User.deleteOne(query);
 
     if (result.deletedCount === 0) {

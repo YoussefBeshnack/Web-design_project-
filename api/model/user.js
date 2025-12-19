@@ -15,7 +15,6 @@ const userSchema = new mongoose.Schema(
   }
 );
 
-// Hide _id in API responses
 userSchema.set("toJSON", {
   transform: (doc, ret) => {
     delete ret._id;

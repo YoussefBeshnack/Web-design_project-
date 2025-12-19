@@ -7,11 +7,10 @@ const courseSchema = new mongoose.Schema(
     description: { type: String, required: true },
     instructor: { type: String, required: true },
     students: {
-      type: [[mongoose.Schema.Types.Mixed]], // array of arrays
+      type: [[mongoose.Schema.Types.Mixed]],
       default: [],
       validate: {
         validator: function(arr) {
-          // Ensure each inner array is [number, string]
           return arr.every(
             item => Array.isArray(item) &&
                     item.length === 2 &&
@@ -32,7 +31,6 @@ const courseSchema = new mongoose.Schema(
   }
 );
 
-// Hide _id in API responses
 courseSchema.set("toJSON", {
   transform: (doc, ret) => {
     delete ret._id;

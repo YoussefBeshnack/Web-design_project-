@@ -2,7 +2,6 @@ import Course from '../model/course.js'
 
 const getAllCourses = async (req, res) => {
   try {
-    // Just use the Model directly. Mongoose knows it's connected.
     const courses = await Course.find({});
     res.status(200).json(courses);
   } catch (err) {
@@ -14,12 +13,10 @@ const addCourse = async (req, res) => {
   try {
     const { id, title, description, instructor, students, categories, visits, price, duration } = req.body;
 
-    // Validate required fields
     if (!title || !instructor || !id) {
       return res.status(400).json({ error: 'Id, Instructor, Title are required' });
     }
 
-    // 3. Mongoose handles the connection in the background automatically
     const newCourse = new Course({
       id,
       title,
@@ -32,7 +29,6 @@ const addCourse = async (req, res) => {
       duration: duration || 0,
     });
 
-    // 4. This sends the data to the 'users' collection defined in your Model
     const savedCourse = await newCourse.save();
 
     res.status(201).json({
@@ -54,7 +50,6 @@ const syncCourses = async (req, res) => {
   try {
     const courses = req.body;
 
-    // Validate input
     if (!Array.isArray(courses)) {
       return res.status(400).json({
         success: false,
@@ -70,7 +65,6 @@ const syncCourses = async (req, res) => {
       });
     }
 
-    // Build bulk ops
     const ops = courses.map(course => ({
       updateOne: {
         filter: { id: course.id },
@@ -79,7 +73,6 @@ const syncCourses = async (req, res) => {
       }
     }));
 
-    // Execute
     const result = await Course.bulkWrite(ops);
 
     return res.status(200).json({
@@ -106,7 +99,6 @@ const deleteCourse = async (req, res) => {
   try {
     const { id } = req.body;
 
-    // Validate input
     if (!id) {
       return res.status(400).json({
         success: false,
@@ -114,7 +106,6 @@ const deleteCourse = async (req, res) => {
       });
     }
 
-    // Delete user
     const result = await Course.deleteOne({ id });
 
     if (result.deletedCount === 0) {
