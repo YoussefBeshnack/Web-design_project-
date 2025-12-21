@@ -2,7 +2,6 @@
 import 'dotenv/config';
 
 // Core
-import cors from 'cors';
 import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -27,12 +26,6 @@ const port = process.env.PORT || 8000;
 // Middleware
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '../src')));
-
-// Allow frontend Domain
-app.use(cors({
-  origin: 'https://web-design-project-three.vercel.app',
-  credentials: true,
-}));
 
 // Routes (uncomment when ready)
 app.use('/', homePage);
