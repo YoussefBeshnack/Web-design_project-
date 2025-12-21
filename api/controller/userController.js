@@ -94,16 +94,16 @@ const syncUsers = async (req, res) => {
 
 const deleteUser = async (req, res) => {
   try {
-    const { id, email } = req.body;
+    const { id } = req.body;
 
-    if (!id && !email) {
+    if (!id) {
       return res.status(400).json({
         success: false,
         message: "Please provide id or email to delete the user"
       });
     }
 
-    const query = id ? { id: id } : { email: email };
+    const query = { id };
 
     const result = await User.deleteOne(query);
 

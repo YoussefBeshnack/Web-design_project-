@@ -11,7 +11,7 @@ const getAllCourses = async (req, res) => {
 
 const addCourse = async (req, res) => {
   try {
-    const { id, title, description, instructor, students, categories, visits, price, duration } = req.body;
+    const { id, title, description, instructor, category, students = [], categories = [], visits = 0, price, duration, status = "Pending", enrolled = 0 } = req.body;
 
     if (!title || !instructor || !id) {
       return res.status(400).json({ error: 'Id, Instructor, Title are required' });
