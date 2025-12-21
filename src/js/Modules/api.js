@@ -1,4 +1,4 @@
-const BASE_URL = "https://web-design-project-three.vercel.app/:8000/api";
+const BASE_URL = "https://web-design-project-three.vercel.app/api";
 
 export async function apiFetch(
   endpoint,
