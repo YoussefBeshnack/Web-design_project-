@@ -465,7 +465,7 @@ function AddCourseModal() {
               <option value="Business">Business</option>
               <option value="Computer Science">Computer Science</option>
               <option value="Design">Design</option>
-              <option value="Cyber">Engineering</option>
+              <option value="Engineering">Engineering</option>
               <option value="Medicine">Medicine</option>
           </select>
         </div>
